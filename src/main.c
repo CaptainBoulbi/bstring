@@ -38,6 +38,8 @@ int main(){
 
   bstrncat(str4, c1, 2);
   print(str4);
+  bstrncat(str4, c1, c1->size*2);
+  print(str4);
 
 	return 0;
 }

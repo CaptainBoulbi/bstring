@@ -62,11 +62,14 @@ int bstrlen(const string* s){
 }
 
 string* bstrncat(string* dest, const string* src, int n){
-  dest->size += n;
+  int realn = src->size < n ? src->size : n;
+  int oldSize = dest->size;
+
+  dest->size += realn;
   dest->cstr = realloc(dest->cstr, (dest->size+1) * sizeof(char));
 
-  for (int i=0; i<n; i++){
-    dest->cstr[dest->size + i] = src->cstr[i];
+  for (int i=0; i<realn; i++){
+    dest->cstr[oldSize + i] = src->cstr[i];
   }
 
   return dest;
