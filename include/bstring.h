@@ -14,10 +14,10 @@ char* bstpcpy(char *dest, const char *src);
 string* bstrcat(string* dest, const string* src);
 // Append the string src to the string dest, returning a pointer dest.
 
-char* bstrchr(const char *s, int c);
+char* bstrchr(const string* s, int c);
 // Return a pointer to the first occurrence of the character c in the string s.
 
-int bstrcmp(const char *s1, const char *s2);
+int bstrcmp(const string* s1, const string* s2);
 // Compare the strings s1 with s2.
 
 int bstrcoll(const char *s1, const char *s2);
