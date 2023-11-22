@@ -1,4 +1,10 @@
+#include <stdlib.h>
 #include <stddef.h>
+
+typedef struct string{
+  char* cstr;
+  size_t size;
+}string;
 
 // from string.h
 
@@ -29,7 +35,7 @@ char* bstrdup(const char *s);
 char* bstrfry(char *string);
 // Randomly swap the characters in string.
 
-size_t bstrlen(const char *s);
+size_t bstrlen(const string* s);
 // Return the length of the string s.
 
 char* bstrncat(char *dest, const char *src, size_t n);
@@ -79,4 +85,8 @@ char* brindex(const char *s, int c);
 
 // custom string operations
 
-// TODO
+void bstrinit(string* str, const char* lit);
+
+void bstrninit(string* str, const char* lit, int n);
+
+void bfreestr(string* str);

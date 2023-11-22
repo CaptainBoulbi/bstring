@@ -1,3 +1,5 @@
 .wakatime-project
+compile_commands.json
+.cache/
 build/
 ms

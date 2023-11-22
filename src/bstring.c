@@ -1,4 +1,4 @@
-#include <stddef.h>
+#include "bstring.h"
 
 // from string.h
 
@@ -20,7 +20,9 @@ char* bstrdup(const char *s);
 
 char* bstrfry(char *string);
 
-size_t bstrlen(const char *s);
+size_t bstrlen(const string* s){
+  return s->size;
+}
 
 char* bstrncat(char *dest, const char *src, size_t n);
 
@@ -55,4 +57,17 @@ char* brindex(const char *s, int c);
 
 // custom string operations
 
-// TODO
+void bstrinit(string* str, const char* lit){
+  int n;
+  for (n=0; lit[n] != '\0'; n++);
+
+  bstrninit(str, lit, n);
+}
+
+void bstrninit(string* str, const char* lit, int n){
+  str->cstr = malloc((n+1) * sizeof(char));
+  str->size = n;
+  for (int i=0; i<n+1; i++){
+    str->cstr[i] = lit[i];
+  }
+}
