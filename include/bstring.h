@@ -3,7 +3,7 @@
 
 typedef struct string{
   char* cstr;
-  size_t size;
+  int size;
 }string;
 
 // from string.h
@@ -11,7 +11,7 @@ typedef struct string{
 char* bstpcpy(char *dest, const char *src);
 // Copy a string from src to dest, returning a pointer to the end of the resulting string at dest.
 
-char* bstrcat(char *dest, const char *src);
+string* bstrcat(string* dest, const string* src);
 // Append the string src to the string dest, returning a pointer dest.
 
 char* bstrchr(const char *s, int c);
@@ -35,7 +35,7 @@ char* bstrdup(const char *s);
 char* bstrfry(char *string);
 // Randomly swap the characters in string.
 
-size_t bstrlen(const string* s);
+int bstrlen(const string* s);
 // Return the length of the string s.
 
 char* bstrncat(char *dest, const char *src, size_t n);
@@ -85,8 +85,10 @@ char* brindex(const char *s, int c);
 
 // custom string operations
 
-void bstrinit(string* str, const char* lit);
+string* bstrinit(const char* lit);
 
-void bstrninit(string* str, const char* lit, int n);
+string* bstrninit(const char* lit, int n);
 
 void bfreestr(string* str);
+
+char* bcstr(string* str);

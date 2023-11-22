@@ -1,10 +1,24 @@
 #include "bstring.h"
+#include <stdlib.h>
+
+// for debug
+#include <stdio.h>
 
 // from string.h
 
 char* bstpcpy(char *dest, const char *src);
 
-char* bstrcat(char *dest, const char *src);
+string* bstrcat(string* dest, const string* src){
+  int oldSize = dest->size;
+  dest->size += src->size;
+  dest->cstr = realloc(dest->cstr, (dest->size+1) * sizeof(char));
+
+  for (int i=0; i<src->size+1; i++){
+    dest->cstr[oldSize + i] = src->cstr[i];
+  }
+
+  return dest;
+}
 
 char* bstrchr(const char *s, int c);
 
@@ -20,7 +34,7 @@ char* bstrdup(const char *s);
 
 char* bstrfry(char *string);
 
-size_t bstrlen(const string* s){
+int bstrlen(const string* s){
   return s->size;
 }
 
@@ -57,17 +71,23 @@ char* brindex(const char *s, int c);
 
 // custom string operations
 
-void bstrinit(string* str, const char* lit){
+string* bstrinit(const char* lit){
   int n;
   for (n=0; lit[n] != '\0'; n++);
 
-  bstrninit(str, lit, n);
+  return bstrninit(lit, n);
 }
 
-void bstrninit(string* str, const char* lit, int n){
+string* bstrninit(const char* lit, int n){
+  string* str = malloc(sizeof(string));
   str->cstr = malloc((n+1) * sizeof(char));
   str->size = n;
   for (int i=0; i<n+1; i++){
     str->cstr[i] = lit[i];
   }
+  return str;
+}
+
+char* bcstr(string* str){
+ return str->cstr;
 }
