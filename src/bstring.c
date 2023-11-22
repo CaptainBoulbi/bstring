@@ -44,13 +44,16 @@ int bstrcmp(const string* s1, const string* s2){
   return ((s1->size > s2->size) * 2) - 1;
 }
 
+// pas compris ce que sa fait
 int bstrcoll(const char *s1, const char *s2);
 
 char* bstrcpy(char *dest, const char *src);
 
 size_t bstrcspn(const char *s, const char *reject);
 
-char* bstrdup(const char *s);
+string* bstrdup(const string* s){
+  return bstrninit(s->cstr, s->size);
+}
 
 char* bstrfry(char *string);
 
@@ -58,7 +61,16 @@ int bstrlen(const string* s){
   return s->size;
 }
 
-char* bstrncat(char *dest, const char *src, size_t n);
+string* bstrncat(string* dest, const string* src, int n){
+  dest->size += n;
+  dest->cstr = realloc(dest->cstr, (dest->size+1) * sizeof(char));
+
+  for (int i=0; i<n; i++){
+    dest->cstr[dest->size + i] = src->cstr[i];
+  }
+
+  return dest;
+}
 
 int bstrncmp(const char *s1, const char *s2, size_t n);
 

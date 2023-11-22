@@ -20,6 +20,7 @@ char* bstrchr(const string* s, int c);
 int bstrcmp(const string* s1, const string* s2);
 // Compare the strings s1 with s2.
 
+// pas compris ce que sa fait
 int bstrcoll(const char *s1, const char *s2);
 // Compare the strings s1 with s2 using the current locale.
 
@@ -29,7 +30,7 @@ char* bstrcpy(char *dest, const char *src);
 size_t bstrcspn(const char *s, const char *reject);
 // Calculate the length of the initial segment of the string s which does not contain any of bytes in the string reject,
 
-char* bstrdup(const char *s);
+string* bstrdup(const string* s);
 // Return a duplicate of the string s in memory allocated using malloc(3).
 
 char* bstrfry(char *string);
@@ -38,7 +39,7 @@ char* bstrfry(char *string);
 int bstrlen(const string* s);
 // Return the length of the string s.
 
-char* bstrncat(char *dest, const char *src, size_t n);
+string* bstrncat(string* dest, const string* src, int n);
 // Append at most n bytes from the string src to the string dest, returning a pointer to dest.
 
 int bstrncmp(const char *s1, const char *s2, size_t n);

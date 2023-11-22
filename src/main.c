@@ -33,5 +33,11 @@ int main(){
   print(c2);
   printf("cmp : %d\n", bstrcmp(c1, c2));
 
+  string* str4 = bstrdup(str2);
+  print(str4);
+
+  bstrncat(str4, c1, 2);
+  print(str4);
+
 	return 0;
 }
