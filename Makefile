@@ -34,13 +34,13 @@ $(shell mkdir -p build)
 all : $(BIN)
 
 $(BIN) : $(OBJ) $(LIBO)
-	$(CC) $(FLAGS) -o $@ $^
+	$(CC) $(FLAGS) -o $@ $^ -fanalyzer
 
 -include $(OBJ:.o=.d) $(LIBO:.o=.d)
 
 build/%.o : src/%.$(EXT)
 	@mkdir -p $(@D)
-	$(CC) $(FLAGS) -o $@ -c $<
+	$(CC) $(FLAGS) -o $@ -c $< -fanalyzer
 build/%.o : lib/%.$(EXT)
 	@mkdir -p $(@D)
 	$(CC) $(FLAGS) -o $@ -c $<
