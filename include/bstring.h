@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include <stddef.h>
+#include <time.h>
 
 typedef struct string{
   char* cstr;
@@ -33,7 +33,7 @@ size_t bstrcspn(const char *s, const char *reject);
 string* bstrdup(const string* s);
 // Return a duplicate of the string s in memory allocated using malloc(3).
 
-char* bstrfry(char *string);
+string* bstrfry(string* string);
 // Randomly swap the characters in string.
 
 int bstrlen(const string* s);
@@ -42,7 +42,7 @@ int bstrlen(const string* s);
 string* bstrncat(string* dest, const string* src, int n);
 // Append at most n bytes from the string src to the string dest, returning a pointer to dest.
 
-int bstrncmp(const char *s1, const char *s2, size_t n);
+int bstrncmp(const string* s1, const string* s2, int n);
 // Compare at most n bytes of the strings s1 and s2.
 
 char* bstrncpy(char *dest, const char *src, size_t n);

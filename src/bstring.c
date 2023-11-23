@@ -1,5 +1,6 @@
 #include "bstring.h"
 #include <stdlib.h>
+#include <time.h>
 
 // for debug
 #include <stdio.h>
@@ -37,11 +38,11 @@ int bstrcmp(const string* s1, const string* s2){
   // (1 or true) * 2 - 1 = 1
 
   if (i < minlen)
-    return ((s1->cstr[i] < s2->cstr[i]) * 2) - 1;
+    return ((s2->cstr[i] < s1->cstr[i]) * 2) - 1;
 
   if (s1->size == s2->size) return 0;
 
-  return ((s1->size > s2->size) * 2) - 1;
+  return ((s2->size > s1->size) * 2) - 1;
 }
 
 // pas compris ce que sa fait
@@ -55,7 +56,17 @@ string* bstrdup(const string* s){
   return bstrninit(s->cstr, s->size);
 }
 
-char* bstrfry(char *string);
+string* bstrfry(string* string){
+  srand(time(NULL));
+  for (int i=0; i<string->size; i++){
+    int index = rand() % string->size;
+
+    char old = string->cstr[i];
+    string->cstr[i] = string->cstr[index];
+    string->cstr[index] = old;
+  }
+  return string;
+}
 
 int bstrlen(const string* s){
   return s->size;
@@ -75,7 +86,23 @@ string* bstrncat(string* dest, const string* src, int n){
   return dest;
 }
 
-int bstrncmp(const char *s1, const char *s2, size_t n);
+int bstrncmp(const string* s1, const string* s2, int n){
+  int minlen = s1->size < s2->size ? s1->size : s2->size;
+  minlen = n < minlen ? n : minlen;
+  int i;
+
+  for (i=0; i<=minlen && s1->cstr[i] == s2->cstr[i]; i++);
+
+  // (0 or false) * 2 - 1 = -1
+  // (1 or true) * 2 - 1 = 1
+
+  if (i < minlen)
+    return ((s2->cstr[i] < s1->cstr[i]) * 2) - 1;
+
+  if (minlen <= s1->size && minlen <= s2->size) return 0;
+
+  return ((s2->size > s1->size) * 2) - 1;
+}
 
 char* bstrncpy(char *dest, const char *src, size_t n);
 

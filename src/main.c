@@ -9,7 +9,9 @@ int main(){
 
   string* str1 = bstrninit("Hamood ?", 8);
   string* str2 = bstrinit("atoz!");
+  // ne pas utiliser
   string str3 = { .cstr = "caca~", .size = 5 };
+  string* strc = bstrinit("caca~");
 
   print(str1);
   print(str2);
@@ -40,6 +42,11 @@ int main(){
   print(str4);
   bstrncat(str4, c1, c1->size*2);
   print(str4);
+
+  print(bstrfry(bstrinit("abcdefghijklmnopqrstuvwxyz~")));
+  print(bstrfry(strc));
+
+  printf("cmp : %d\n", bstrncmp(bstrinit("toz! de la zoubida"), bstrinit("toz! de la mama"), 4));
 
 	return 0;
 }
