@@ -51,7 +51,7 @@ char* bstrncpy(char *dest, const char *src, size_t n);
 char* bstrpbrk(const char *s, const char *accept);
 // Return a pointer to the first occurrence in the string s of one of the bytes in the string accept.
 
-char* bstrrchr(const char *s, int c);
+char* bstrrchr(const string *s, int c);
 // Return a pointer to the last occurrence of the character c in the string s.
 
 char* bstrsep(char **stringp, const char *delim);
