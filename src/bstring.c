@@ -108,7 +108,12 @@ char* bstrncpy(char *dest, const char *src, size_t n);
 
 char* bstrpbrk(const char *s, const char *accept);
 
-char* bstrrchr(const char *s, int c);
+char* bstrrchr(const string *s, int c){
+  for (int i=s->size; i>0; i--){
+    if (s->cstr[i] == c) return s->cstr + i;
+  }
+  return NULL;
+}
 
 char* bstrsep(char **stringp, const char *delim);
 

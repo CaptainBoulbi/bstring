@@ -48,5 +48,8 @@ int main(){
 
   printf("cmp : %d\n", bstrncmp(bstrinit("toz! de la zoubida"), bstrinit("toz! de la mama"), 4));
 
+  string* str5 = bstrinit("coucou les loulou");
+  printf("strrchr : %s\n", bstrrchr(str5, 'l'));
+
 	return 0;
 }
