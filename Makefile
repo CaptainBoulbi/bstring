@@ -12,7 +12,7 @@ DEPFLAGS=-MP -MD
 FLAGS=-Wall -Wextra -I. $(OPT) $(DEPFLAGS) $(foreach M,$(MACROS),-D$(M))
 
 SRC=$(wildcard *.c)
-OBJ=$(SRC:.c=.o)
+OBJ=$(SRC:%.c=build/%.o)
 TEST=$(wildcard test/*.c)
 TESTO=$(TEST:test/%.c=build/%.t)
 
