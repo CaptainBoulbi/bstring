@@ -34,9 +34,6 @@ int bstrcmp(const string* s1, const string* s2){
 
   for (i=0; i<=minlen && s1->cstr[i] == s2->cstr[i]; i++);
 
-  // (0 or false) * 2 - 1 = -1
-  // (1 or true) * 2 - 1 = 1
-
   if (i < minlen)
     return ((s2->cstr[i] < s1->cstr[i]) * 2) - 1;
 
@@ -93,9 +90,6 @@ int bstrncmp(const string* s1, const string* s2, int n){
 
   for (i=0; i<=minlen && s1->cstr[i] == s2->cstr[i]; i++);
 
-  // (0 or false) * 2 - 1 = -1
-  // (1 or true) * 2 - 1 = 1
-
   if (i < minlen)
     return ((s2->cstr[i] < s1->cstr[i]) * 2) - 1;
 
@@ -127,7 +121,6 @@ size_t strxfrm(char *dest, const char *src, size_t n);
 
 // from strings.h
 
-
 int bstrcasecmp(const char *s1, const char *s2);
 
 int bstrncasecmp(const char *s1, const char *s2, size_t n);
@@ -145,6 +138,15 @@ string* bstrinit(const char* lit){
   return bstrninit(lit, n);
 }
 
+int bstrinitsize(string* s){
+  int n;
+  for (n=0; s->cstr[n] != '\0'; n++);
+
+  s->size = n;
+
+  return n;
+}
+
 string* bstrninit(const char* lit, int n){
   string* str = malloc(sizeof(string));
   if (str == NULL) return NULL;
@@ -154,6 +156,12 @@ string* bstrninit(const char* lit, int n){
     str->cstr[i] = lit[i];
   }
   return str;
+}
+
+void bbstrninit(string* s, char* lit, int n){
+  if (s->cstr == NULL) free(s->cstr);
+  s->cstr = lit;
+  s->size = n;
 }
 
 char* bcstr(string* str){
